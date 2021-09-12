@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DBprojectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="NUMBER" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NUMBER" Type="int" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LASTNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="STATUSS" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DATESTART" Type="date" Nullable="false" />
+          <Property Name="CLASS" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee_Presence">
+          <Key>
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Employee_ID" Type="int" Nullable="false" />
+          <Property Name="Entry_" Type="datetime" />
+          <Property Name="Exit_" Type="datetime" />
+          <Property Name="Date_" Type="date" />
+          <Property Name="Institution_Number" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kindergarten">
+          <Key>
+            <PropertyRef Name="Institution_number" />
+          </Key>
+          <Property Name="Institution_number" Type="int" Nullable="false" />
+          <Property Name="Name_Kindergarten" Type="varchar" MaxLength="30" />
+          <Property Name="Adress_Kindergarten" Type="varchar" MaxLength="60" />
+          <Property Name="type_Kindergarten" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DBprojectModelStoreContainer">
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee_Presence" EntityType="Self.Employee_Presence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kindergarten" EntityType="Self.Kindergarten" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBprojectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="NUMBER" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NUMBER" Type="Int32" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LASTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STATUSS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATESTART" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CLASS" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee_Presence">
+          <Key>
+            <PropertyRef Name="Employee_ID" />
+          </Key>
+          <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+          <Property Name="Entry_" Type="DateTime" Precision="3" />
+          <Property Name="Exit_" Type="DateTime" Precision="3" />
+          <Property Name="Date_" Type="DateTime" Precision="0" />
+          <Property Name="Institution_Number" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kindergarten">
+          <Key>
+            <PropertyRef Name="Institution_number" />
+          </Key>
+          <Property Name="Institution_number" Type="Int32" Nullable="false" />
+          <Property Name="Name_Kindergarten" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Adress_Kindergarten" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="type_Kindergarten" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DBprojectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Employee_Presence" EntityType="Self.Employee_Presence" />
+          <EntitySet Name="Kindergarten" EntityType="Self.Kindergarten" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBprojectModelStoreContainer" CdmEntityContainer="DBprojectEntities">
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="DBprojectModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NUMBER" ColumnName="NUMBER" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="STATUSS" ColumnName="STATUSS" />
+                <ScalarProperty Name="DATESTART" ColumnName="DATESTART" />
+                <ScalarProperty Name="CLASS" ColumnName="CLASS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee_Presence">
+            <EntityTypeMapping TypeName="DBprojectModel.Employee_Presence">
+              <MappingFragment StoreEntitySet="Employee_Presence">
+                <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+                <ScalarProperty Name="Entry_" ColumnName="Entry_" />
+                <ScalarProperty Name="Exit_" ColumnName="Exit_" />
+                <ScalarProperty Name="Date_" ColumnName="Date_" />
+                <ScalarProperty Name="Institution_Number" ColumnName="Institution_Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kindergarten">
+            <EntityTypeMapping TypeName="DBprojectModel.Kindergarten">
+              <MappingFragment StoreEntitySet="Kindergarten">
+                <ScalarProperty Name="Institution_number" ColumnName="Institution_number" />
+                <ScalarProperty Name="Name_Kindergarten" ColumnName="Name_Kindergarten" />
+                <ScalarProperty Name="Adress_Kindergarten" ColumnName="Adress_Kindergarten" />
+                <ScalarProperty Name="type_Kindergarten" ColumnName="type_Kindergarten" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
